@@ -1,0 +1,90 @@
+{
+  "name": "los",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/main/main.js",
+  "build": {
+    "appId": "com.LoS.desktop",
+    "productName": "LoSDesktop",
+    "directories": {
+      "buildResources": "assets",
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "build/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico",
+      "publisherName": "Your Company"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "LoSDesktop"
+    }
+  },
+  "scripts": {
+    "start": "webpack serve --mode development",
+    "build": "webpack --mode production",
+    "rebuild": "electron-rebuild -f -w better-sqlite3",
+    "electron": "electron .",
+    "electron-build": "tsc main.ts --outDir dist",
+    "electron-dev-compile": "cross-env NODE_ENV=development tsc -p tsconfig.json",
+    "electron-dev": "cross-env NODE_ENV=development electron .",
+    "dev": "npm run electron-dev-compile && concurrently \"npm run start\" \"npm run electron-dev\"",
+    "build:react": "webpack --mode production",
+    "build:electron": "tsc -p tsconfig.json",
+    "postinstall": "electron-builder install-app-deps",
+    "dist": "npm run build:react && npm run build:electron && npm run rebuild && npm run package",
+    "package": "electron-builder"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.4",
+    "@babel/preset-react": "^7.24.7",
+    "@babel/preset-typescript": "^7.24.7",
+    "@types/better-sqlite3": "^7.6.11",
+    "@types/papaparse": "^5.3.14",
+    "@types/react": "^18.3.8",
+    "@types/react-beautiful-dnd": "^13.1.8",
+    "@types/react-dom": "^18.3.0",
+    "@types/react-native": "^0.73.0",
+    "@types/uuid": "^10.0.0",
+    "babel-loader": "^9.2.1",
+    "concurrently": "^9.0.1",
+    "cross-env": "^7.0.3",
+    "css-loader": "^7.1.2",
+    "electron": "^32.1.2",
+    "electron-builder": "^25.0.5",
+    "electron-rebuild": "^3.2.9",
+    "electron-reload": "^2.0.0-alpha.1",
+    "html-webpack-plugin": "^5.6.0",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.6.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.1.0"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.3.0",
+    "date-fns": "^4.1.0",
+    "dotenv": "^16.4.5",
+    "find-cache-dir": "^5.0.0",
+    "lucide-react": "^0.445.0",
+    "papaparse": "^5.4.1",
+    "react": "^18.3.1",
+    "react-beautiful-dnd": "^13.1.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2",
+    "uuid": "^10.0.0"
+  }
+}

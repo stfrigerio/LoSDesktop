@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "commonjs", // Electron uses CommonJS modules
+        "lib": ["ES6", "DOM"],
+        "jsx": "react",
+        "sourceMap": true,
+        "outDir": "dist",
+        "strict": true,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "allowSyntheticDefaultImports": true,
+        "types": ["react-beautiful-dnd"],
+        "resolveJsonModule": true
+    },
+    "include": [
+        "src/**/*",
+        "*.d.ts"
+    ],    
+    "exclude": ["node_modules"]
+}
